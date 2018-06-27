@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import {setLocalNotification, clearLocalNotification} from '../utils/notifications'
 import Card from '../components/Card'
 
 class Quiz extends Component {
@@ -34,6 +35,10 @@ class Quiz extends Component {
       currentQuestion: 0,
       currenctScore: 0
     })
+  }
+
+  componentDidMount() {
+    clearLocalNotification().then(setLocalNotification)
   }
 
   render () {
