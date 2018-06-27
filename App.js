@@ -1,9 +1,10 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, StatusBar } from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
+import { Constants } from 'expo'
 import { Entypo } from '@expo/vector-icons'
 import { purple, white } from './utils/colors'
 import { setLocalNotification } from './utils/notifications'
@@ -17,6 +18,14 @@ const store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+function FlashcardsStatusBar ({backgroundColor, ...props}) {
+  return (
+    <View style={{ backgroundColor}}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
 const Tabs = createBottomTabNavigator({
   Decks: {
@@ -35,7 +44,12 @@ const Tabs = createBottomTabNavigator({
   }
 }, {
   navigationOptions: {
-    header: null
+    headerTintColor: white,
+      headerStyle:{
+        backgroundColor: purple
+      },
+      headerBackTitle: null,
+      title: "Add Card"
   },
   tabBarOptions: {
     activeTintColor: purple, 
@@ -56,6 +70,15 @@ const Tabs = createBottomTabNavigator({
 const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
+    navigationOptions:{
+      headerTintColor: white,
+      headerStyle:{
+        backgroundColor: purple,
+        height: 60,
+      },
+      headerBackTitle: null,
+      title: "Mobile Flashcards"
+    }
   },
   Deck:{
     screen: Deck,
@@ -97,10 +120,14 @@ export default class App extends React.Component {
     setLocalNotification()
   }
 
+ 
+
   render() {
+    console.log(this.props)
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
+          <FlashcardsStatusBar backgroundColor={purple} barStyle="light-content" />
           <MainNavigator/>
         </View>
       </Provider>
