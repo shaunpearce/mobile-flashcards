@@ -56,7 +56,13 @@ const mapStateToProps = ({ decks }) => {
   }
 }
 
-export default connect(mapStateToProps, {loadDecks})(Decks)
+const mapDispatchToProps = (dispatch, {navigation}) => {
+  return {
+    loadDecks: (decks) => dispatch(loadDecks(decks))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Decks)
 
 const styles = StyleSheet.create({
   container: {

@@ -17,7 +17,7 @@ class AddDeck extends Component {
     if (title) {
       addDeck(title)
       saveDeckTitle(title)
-      this.toHome()
+      this.reset()
     }
   }
 
@@ -25,10 +25,6 @@ class AddDeck extends Component {
     this.setState({
       title: ""
     })
-    this.toHome()
-  }
-
-  toHome() {
     this.props.navigation.dispatch(NavigationActions.back({key: 'AddDeck'}))
   }
 
@@ -36,7 +32,7 @@ class AddDeck extends Component {
     return (
       <View>
         <Text>Add Deck</Text>
-        <TextInput editable={true} placeholder="Deck Title" onChangeText={(title) => this.setState({title})}/>
+        <TextInput editable={true} placeholder="Deck Title" onChangeText={(title) => this.setState({title})} value={this.state.title}/>
         <TouchableOpacity onPress={this.reset}>
           <Text>Cancel</Text>
         </TouchableOpacity>
@@ -48,7 +44,16 @@ class AddDeck extends Component {
   }
 }
 
-function mapStateToProps(decks) {
-  return {decks}
+const mapStateToProps = (decks) => {
+  return {
+    decks
+  }
 }
-export default connect(mapStateToProps, {addDeck})(AddDeck)
+
+const mapDispatchToProps = (dispatch, {navigation}) => {
+  return {
+    addDeck: (deckTitle) => dispatch(addDeck(deckTitle))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddDeck)

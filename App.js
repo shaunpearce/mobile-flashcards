@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { View } from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
-import { FontAwesome, Ionicons, Entypo } from '@expo/vector-icons'
+import { Entypo } from '@expo/vector-icons'
 import { purple, white } from './utils/colors'
 import { setLocalNotification } from './utils/notifications'
 import Decks from './views/Decks'
@@ -23,7 +23,7 @@ const Tabs = createBottomTabNavigator({
     screen: Decks,
     navigationOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Entypo name='list' size={30} color={tintColor} />
     },
   },
   AddDeck: {
@@ -94,7 +94,6 @@ const MainNavigator = createStackNavigator({
 export default class App extends React.Component {
 
   componentDidMount() {
-    console.log("MOUNTEDD")
     setLocalNotification()
   }
 

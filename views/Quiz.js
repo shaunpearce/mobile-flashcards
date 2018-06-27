@@ -79,4 +79,4 @@ const mapStateToProps =({decks}, {navigation}) => {
   }
 }
 
-export default connect(mapStateToProps, null)(Quiz)
+export default connect(mapStateToProps)(Quiz)

@@ -39,16 +39,17 @@ class AddCard extends Component {
   }
 }
 
-//export default AddCard
-function mapStateToProps({decks}, {navigation}) {
+
+const mapStateToProps = ({decks}, {navigation}) => {
+
   const {deckTitle} = navigation.state.params
+  
   return {
     deck: decks[deckTitle] || {}
   }
 }
 
-function mapDispatchToProps(dispatch, {navigation}) {
-  const {deckTitle} = navigation.state.params
+const mapDispatchToProps = (dispatch, {navigation}) => {
 
   return {
     goBack: () => navigation.goBack(),
@@ -56,4 +57,5 @@ function mapDispatchToProps(dispatch, {navigation}) {
   }
 
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(AddCard)
