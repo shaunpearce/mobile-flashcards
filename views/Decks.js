@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native
 import { AppLoading } from 'expo'
 import { getDecks } from '../utils/api'
 import { loadDecks } from '../actions'
-import { purple, white } from '../utils/colors'
+import { blue, white } from '../utils/colors'
 
 
 class Decks extends Component {
@@ -23,8 +23,9 @@ class Decks extends Component {
   renderItem = ({item, index}) => {
     const { navigate } = this.props.navigation
     return (
-      <View style={[styles.itemContainer, { borderTopWidth: index === 0 ? 1 : 0}]}>
-        <TouchableOpacity style={styles.item} onPress={() => navigate('Deck', { deckTitle: item.title })}>
+      // <View style={[styles.itemContainer, { borderTopWidth: index === 0 ? 1 : 0}]}>
+      <View style={styles.itemContainer}>
+      <TouchableOpacity style={styles.item} onPress={() => navigate('Deck', { deckTitle: item.title })}>
           <Text style={styles.itemText}>{item.title}</Text>
         </TouchableOpacity>
       </View>
@@ -34,13 +35,11 @@ class Decks extends Component {
   render () { 
 
     const { decks } = this.props
-    
     const listOfDecks = decks && Object.values(decks)
    
     return (
       <View style={styles.container}>
-        {
-          this.state.loaded ?
+        {this.state.loaded ?
           <FlatList data={listOfDecks} keyExtractor={this.keyExtractor} extraData={this.state} renderItem={this.renderItem}/>:
           <AppLoading/>   
         } 
@@ -75,8 +74,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: purple,
-    borderTopColor: purple
+    borderBottomColor: blue,
+    borderTopColor: blue
   },
   item: {
    flex: 1,
@@ -86,5 +85,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     padding: 20,
+    color: blue,
+    fontSize: 16,
+    fontWeight: '600'
    }
 });

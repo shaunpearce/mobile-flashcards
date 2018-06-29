@@ -6,8 +6,9 @@ import reducer from './reducers'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import { Entypo } from '@expo/vector-icons'
-import { purple, white } from './utils/colors'
+import { blue, white } from './utils/colors'
 import { setLocalNotification } from './utils/notifications'
+import { headerHeight } from './utils/variables'
 import Decks from './views/Decks'
 import Deck from './views/Deck'
 import Quiz from './views/Quiz'
@@ -46,13 +47,13 @@ const Tabs = createBottomTabNavigator({
   navigationOptions: {
     headerTintColor: white,
       headerStyle:{
-        backgroundColor: purple
+        backgroundColor: blue
       },
       headerBackTitle: null,
       title: "Add Card"
   },
   tabBarOptions: {
-    activeTintColor: purple, 
+    activeTintColor: blue, 
     style: {
       height: 56,
       backgroundColor: white,
@@ -73,8 +74,8 @@ const MainNavigator = createStackNavigator({
     navigationOptions:{
       headerTintColor: white,
       headerStyle:{
-        backgroundColor: purple,
-        height: 60,
+        backgroundColor: blue,
+        height: headerHeight,
       },
       headerBackTitle: null,
       title: "Mobile Flashcards"
@@ -85,7 +86,8 @@ const MainNavigator = createStackNavigator({
     navigationOptions:{
       headerTintColor: white,
       headerStyle:{
-        backgroundColor: purple
+        backgroundColor: blue,
+        height: headerHeight,
       },
       headerBackTitle: null,
     }
@@ -95,7 +97,8 @@ const MainNavigator = createStackNavigator({
     navigationOptions:{
       headerTintColor: white,
       headerStyle:{
-        backgroundColor: purple
+        backgroundColor: blue,
+        height: headerHeight,
       },
       headerBackTitle: null,
       title: "Add Card"
@@ -106,7 +109,8 @@ const MainNavigator = createStackNavigator({
     navigationOptions:{
       headerTintColor: white,
       headerStyle:{
-        backgroundColor: purple
+        backgroundColor: blue,
+        height: headerHeight,
       },
       headerBackTitle: null,
     }
@@ -127,7 +131,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <FlashcardsStatusBar backgroundColor={purple} barStyle="light-content" />
+          <FlashcardsStatusBar backgroundColor={blue} barStyle="light-content" />
           <MainNavigator/>
         </View>
       </Provider>
